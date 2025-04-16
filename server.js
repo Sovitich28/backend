@@ -1,20 +1,12 @@
-const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-const app = express();
-const server = http.createServer(app);
+const server = http.createServer();
 const io = new Server(server, {
     cors: {
         origin: 'https://testvideochat-git-main-soufyanebelmanaa-gmailcoms-projects.vercel.app/', // Replace with your Vercel URL
         methods: ['GET', 'POST']
     }
-});
-
-app.use(express.static(__dirname));
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
 });
 
 const rooms = {};
@@ -53,5 +45,5 @@ io.on('connection', (socket) => {
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Socket.io server running on port ${port}`);
 });
