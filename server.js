@@ -44,6 +44,7 @@ io.on('connection', (socket) => {
 });
 
 const port = process.env.PORT || 3000;
-server.listen(port, () => {
-    console.log(`Socket.io server running on port ${port}`);
+const host = '0.0.0.0'; // Bind to all interfaces
+server.listen(port, host, () => {
+    console.log(`Socket.io server running on ${host}:${port}`);
 });
